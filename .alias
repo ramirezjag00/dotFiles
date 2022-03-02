@@ -130,6 +130,7 @@ alias rnapr='cd android && ./gradlew clean && npm run bundle && ./gradlew assemb
 alias rnasd='cd android && ./gradlew clean && npm run bundle && ./gradlew assembleStagingDebug && open app/build/outputs/apk/staging/debug && cd ..'
 alias rnasr='cd android && ./gradlew clean && npm run bundle && ./gradlew assembleStagingRelease && open app/build/outputs/apk/staging/release && cd ..'
 alias rnpod='cd ios && rm -rf Pods Podfile.lock && pod install && cd ..'
+alias rnpodm1='cd ios && rm -rf Pods Podfile.lock && arch -x86_64 pod install && cd ..'
 
 # NETWORK
   # ping google
