@@ -1,0 +1,144 @@
+#!/usr/bin/env bash
+
+# SHORTCUTS
+alias cdl="cd ~/Downloads"
+alias cdt="cd ~/Desktop"
+alias ch="cd ~"
+alias odl="open ~/Downloads"
+alias odt="open ~/Desktop"
+alias oh="open ~"
+alias o="open ."
+
+# Hide/show all desktop icons (useful when presenting)
+alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
+alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
+
+  # Volume down
+alias vdown="osascript -e 'set volume output muted true'"
+  # Volume up
+alias vup="osascript -e 'set volume output volume 100'"
+  # Lock the screen (when going AFK)
+alias afk="osascript -e '
+  tell application \"System Events\" to keystroke \"q\" using {control down, command down}'"
+  # sleep screen
+alias sleep='pmset displaysleepnow'
+
+# SYSTEM
+alias path=pwd
+alias cat=ccat
+alias t=touch
+alias customAlias='ccat ~/.alias'
+alias aliases='alias -L'
+alias restartTerminal="osascript -e '
+  tell application \"iTerm2\"
+    set newWindow to (create window with default profile)
+  end tell' && exit"
+# alias aliases="alias | sed 's/=.*//'"
+  # EXISTING in oh-my-zsh alias
+  # alias -- -='cd -'
+  # alias -g ...=../..
+  # alias -g ....=../../..
+  # alias -g .....=../../../..
+  # alias -g ......=../../../../..
+  # alias lsa='ls -lah'
+  # alias md='mkdir -p'
+  # alias rd=rmdir
+
+# GIT
+alias gclo='git clone'
+alias gst='git status'
+alias gsth='git stash'
+alias gpo='git push origin'
+alias gcnb='git checkout -b'
+alias gcua='git checkout -- .' # cancel all changes of unstaged files
+gtag() {
+  git tag -a $1 -m $2
+}
+grsh() {
+  git reset --soft HEAD~$1
+}
+  # EXISTING in oh-my-zsh alias
+  # alias g=git
+  # alias ga='git add'
+  # alias gaa='git add --all'
+  # alias gb='git branch'
+  # alias gcmsg='git commit -m'
+  # alias gcm='git checkout $(git_main_branch)'
+  # alias gcd='git checkout $(git_develop_branch)'
+  # alias gco='git checkout'
+  # alias gcf='git config --list'
+  # alias gd='git diff'
+  # alias gf='git fetch'
+  # alias ggpull='git pull origin "$(git_current_branch)"'
+  # alias ggpush='git push origin "$(git_current_branch)"'
+  # alias gl='git pull'
+  # alias gp='git push'
+  # alias gup='git pull --rebase'
+  # alias glo='git log --oneline --decorate'
+  # alias glog='git log --oneline --decorate --graph'
+  # alias glod='git log --graph --pretty='\''%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset'\'
+  # alias gm='git merge'
+  # alias gma='git merge --abort'
+  # alias gmom='git merge origin/$(git_main_branch)'
+  # alias gra='git remote add'
+  # alias grbd='git rebase $(git_develop_branch)'
+  # alias grbd='git rebase $(git_develop_branch)'
+  # alias grbm='git rebase $(git_main_branch)'
+  # alias grev='git revert'
+  # alias grh='git reset'
+  # alias grhh='git reset --hard'
+  # alias grst='git restore --staged'
+  # alias gsh='git show'
+  # alias gstp='git stash pop'
+
+# NPM
+alias ni='npm i'
+alias nig='npm i -g'
+alias nid='npm i -D'
+alias nl='npm list'
+alias nlg='npm list -g'
+alias nup='npm update'
+alias nupg='npm update -g'
+alias nil='npm install --legacy-peer-deps'
+alias nu='npm uninstall'
+alias nrr='rm -rf node_modules package-lock.json yarn.lock'
+alias nrni='npm run ios'
+alias nrna='npm run android'
+alias nrnrc='npx react-native start —reset-cache'
+alias nve='npm -v'
+alias ns='npm start'
+alias nr='npm run'
+alias nuv='npm version'
+alias nincli='npm uninstall -g react-native-cli && npm i -g @react-native-community/cli'
+
+# NVM
+alias nvmu='nvm use'
+alias nvmi='nvm install'
+alias nvmad='nvm alias default'
+alias nvmls='nvm ls'
+alias nvmcc='nvm cache clear'
+
+# REACT-NATIVE
+rnnew() {
+  npx react-native init $1 --template https://github.com/ramirezjag00/react-native-ts-template.git && cd $1 && npm install --legacy-peer-deps && npm run ios
+}
+alias rnl='npm run lint'
+alias rnb='npx react-native bundle --platform android --dev false --entry-file index.android.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/'
+alias rngra='cd android && ./gradlew clean && cd ..'
+alias rnapd='cd android && ./gradlew clean && npm run bundle && ./gradlew assembleProductionDebug && open app/build/outputs/apk/production/debug && cd ..'
+alias rnapr='cd android && ./gradlew clean && npm run bundle && ./gradlew assembleProductionRelease && open app/build/outputs/apk/production/release && cd ..'
+alias rnasd='cd android && ./gradlew clean && npm run bundle && ./gradlew assembleStagingDebug && open app/build/outputs/apk/staging/debug && cd ..'
+alias rnasr='cd android && ./gradlew clean && npm run bundle && ./gradlew assembleStagingRelease && open app/build/outputs/apk/staging/release && cd ..'
+alias rnpod='cd ios && rm -rf Pods Podfile.lock && pod install && cd ..'
+
+# NETWORK
+  # ping google
+alias pingg='ping 8.8.8.8'
+  # print public ip
+alias publicip="dig +short myip.opendns.com @resolver1.opendns.com"
+  # print local ip
+alias localip="ipconfig getifaddr en0"
+  # print access point's password 
+apwd() {
+  security find-generic-password -ga $1 | grep "password:"
+}
