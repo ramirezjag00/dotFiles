@@ -33,6 +33,7 @@ alias restartTerminal="osascript -e '
   tell application \"iTerm2\"
     set newWindow to (create window with default profile)
   end tell' && exit"
+alias restartMac='sudo shutdown -r now'
 # alias aliases="alias | sed 's/=.*//'"
   # EXISTING in oh-my-zsh alias
   # alias -- -='cd -'
